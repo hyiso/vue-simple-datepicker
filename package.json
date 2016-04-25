@@ -1,0 +1,40 @@
+{
+  "name": "vue-simple-datepicker",
+  "version": "1.0.0",
+  "description": "a simple datepicker component based on vue",
+  "main": "src/vue-simple-datepicker.vue",
+  "scripts": {
+    "test": "node_modules/.bin/webpack-dev-server --inline --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyiso/vue-simple-datepicker.git"
+  },
+  "keywords": [
+    "vue",
+    "datepicker"
+  ],
+  "author": "hyiso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyiso/vue-simple-datepicker/issues"
+  },
+  "homepage": "https://github.com/hyiso/vue-simple-datepicker#readme",
+  "dependencies": {
+    "vue": "^1.0.21"
+  },
+  "devDependencies": {
+    "babel-core": "^6.7.7",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.7.5",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-runtime": "^5.8.38",
+    "css-loader": "^0.23.1",
+    "vue-hot-reload-api": "^1.3.2",
+    "vue-html-loader": "^1.2.2",
+    "vue-loader": "^8.2.3",
+    "vue-style-loader": "^1.0.0",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
