@@ -1,6 +1,6 @@
 {
   "name": "vue-simple-datepicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a simple datepicker component based on vue",
   "main": "src/vue-simple-datepicker.vue",
   "scripts": {
