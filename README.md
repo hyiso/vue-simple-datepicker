@@ -24,6 +24,11 @@ import simpleDatepicker from 'vue-simple-datepicker'
 
 new Vue({
     el: 'body',
+    data () {
+        return {
+            today: '2016/04/26'
+        }
+    },
     components: {
         'simple-datepicker': simpleDatepicker
     }
