@@ -28,5 +28,6 @@ new Vue({
         'simple-datepicker': simpleDatepicker
     }
 })
+```
 # License
 MIT
