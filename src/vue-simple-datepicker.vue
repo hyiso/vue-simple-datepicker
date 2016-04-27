@@ -43,7 +43,28 @@
     </div>
 </template>
 <script>
-import * as _ from './util'
+let zeroPadding = (num) => Number(num) < 10 ? '0' + num : num
+
+let util = {
+    isSameDay: (a, b) => {
+        return a.getFullYear() === b.getFullYear()
+        && a.getMonth() === b.getMonth()
+        && a.getDate() === b.getDate()
+    },
+    getOffsetDay: (today, num) => new Date(today.valueOf() + num * 86400000),
+    getFormatDate: (day, format) => {
+        let tmp = {}
+        tmp.YYYY = day.getFullYear().toString()
+        tmp.MM = zeroPadding((day.getMonth() + 1))
+        tmp.DD = zeroPadding(day.getDate())
+        return format.replace(/([YMD]+)/g, function(match) {
+            return tmp[match]
+        })
+    },
+    getValidDate: (date) => date.replace(/\D/g,function(match){
+        return '/'
+    })
+}
 export default {
     props: {
         value: {
@@ -75,7 +96,7 @@ export default {
     },
     created () {
         if(this.value) {
-            this.currentDay = new Date(_.getValidDate(this.value))
+            this.currentDay = new Date(util.getValidDate(this.value))
         } else {
             this.currentDay = new Date()
         }
@@ -92,13 +113,13 @@ export default {
         days () {
             let days = []
             let firstDay = new Date(this.currentYear, this.currentMonth, 1)
-            let startDay = _.getOffsetDay(firstDay, -1 * firstDay.getDay())
+            let startDay = util.getOffsetDay(firstDay, -1 * firstDay.getDay())
             for (let i = 0; i < 42; i++) {
-                let day = _.getOffsetDay(startDay, i)
+                let day = util.getOffsetDay(startDay, i)
                 days.push({
                     day: day,
                     text: day.getDate(),
-                    isSelected: _.isSameDay(day, this.currentDay),
+                    isSelected: util.isSameDay(day, this.currentDay),
                     inSameMonth: day.getMonth() === this.currentMonth
                 })
             }
@@ -108,7 +129,7 @@ export default {
     watch: {
         value (newVal) {
             if(newVal) {
-                this.currentDay = new Date(_.getValidDate(newVal))
+                this.currentDay = new Date(util.getValidDate(newVal))
             } else {
                 this.currentDay = new Date()
             }
@@ -162,7 +183,7 @@ export default {
         },
         seleteDay (date) {
             if(date.inSameMonth) {
-                this.value = _.getFormatDate(date.day, this.format)
+                this.value = util.getFormatDate(date.day, this.format)
                 this.show = false
             }
         },
