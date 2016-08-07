@@ -61,7 +61,7 @@ let util = {
             return tmp[match]
         })
     },
-    getValidDate: (date) => date.replace(/\D/g,function(match){
+    getValidDate: (date) => date.replace(/[-\.]/g,function(match){
         return '/'
     })
 }
