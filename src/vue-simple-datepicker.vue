@@ -6,7 +6,7 @@
             @focus="showPanel"
             >
         </div>
-        <div class="datepicker-panel" v-show="show" :style="style">
+        <div class="datepicker-panel" :class="position == 'bottom'" v-show="show">
             <div class="datepicker-header">
                 <a class="prev" @click.stop="prevMonth"></a>
                 <div class="title">
@@ -76,9 +76,9 @@ export default {
             required: false,
             default: 'YYYY/MM/DD'
         },
-        style: {
-            type: Object,
-            required: false
+        position: {
+            type: String,
+            defalut: 'bottom'
         }
     },
     data () {
@@ -124,6 +124,10 @@ export default {
                 })
             }
             return days
+        },
+        panelClass () {
+            'datepicker-panel--bottom': this.position === 'bottom',
+            'datepicker-panel-top': this.position === 'top'
         }
     },
     watch: {
@@ -205,15 +209,21 @@ export default {
 .datepicker-container {
     position: relative;
     display: inline-block;
+    font-size: 13px;
 }
 .datepicker-panel {
     position: absolute;
-    top: 100%;
     left: 0;
     z-index: 2;
     width: 260px;
     font-family: monospace;
     box-shadow: 1px 0px 6px rgba(0,0,0,0.2);
+}
+.datepicker-panel--top {
+    bottom: 100%;
+}
+.datepicker-panel--bottom {
+    top: 100%;
 }
 .datepicker-header {
     position: relative;
