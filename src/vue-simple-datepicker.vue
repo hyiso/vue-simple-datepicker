@@ -6,7 +6,7 @@
             @focus="showPanel"
             >
         </div>
-        <div class="datepicker-panel" :class="position == 'bottom'" v-show="show">
+        <div class="datepicker-panel" :class="panelClass" v-show="show">
             <div class="datepicker-header">
                 <a class="prev" @click.stop="prevMonth"></a>
                 <div class="title">
@@ -126,8 +126,10 @@ export default {
             return days
         },
         panelClass () {
-            'datepicker-panel--bottom': this.position === 'bottom',
-            'datepicker-panel-top': this.position === 'top'
+            return {
+                'datepicker-panel--bottom': this.position === 'bottom',
+                'datepicker-panel--top': this.position === 'top'
+            }
         }
     },
     watch: {
