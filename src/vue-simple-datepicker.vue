@@ -84,9 +84,9 @@ export default {
     data () {
         return {
             show: false,
-            currentDay: null,
-            currentYear: null,
-            currentMonth: null,
+            currentDay: 1,
+            currentYear: 1970,
+            currentMonth: 0,
             currentDate: null,
             months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             years: [],
@@ -149,17 +149,15 @@ export default {
             return day && day.getTime() > Date.now();
         },
         prevMonth () {
-            if (this.currentMonth === 1) {
-                this.currentMonth = 12
-                this.currentYear -= 1
+            if (this.currentMonth === 0) {
+                this.currentMonth = 11
             } else {
                 this.currentMonth -= 1
             }
         },
         nextMonth () {
-            if (this.currentMonth === 12) {
-                this.currentMonth = 1
-                this.currentYear += 1
+            if (this.currentMonth === 11) {
+                this.currentMonth = 0
             } else {
                 this.currentMonth += 1
             }
