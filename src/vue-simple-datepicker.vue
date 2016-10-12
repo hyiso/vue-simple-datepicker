@@ -61,9 +61,19 @@ let util = {
             return tmp[match]
         })
     },
-    getValidDate: (date) => date.replace(/[-\.]/g,function(match){
-        return '/'
-    })
+    getValidDate: (dateStr, format) => {
+        let dateMatches = dateStr.match(/(\d+)/g);
+        let formatMatches = []
+        format.replace(/([YMD]+)/g, function(match) {
+            formatMatches.push(match)
+        })
+        let tmp = {}
+        console.log(formatMatches,dateMatches)
+        formatMatches.forEach((match,index) => {
+            tmp[match] = dateMatches[index]
+        })
+        return `${tmp.YYYY}/${tmp.MM}/${tmp.DD}`
+    }
 }
 export default {
     props: {
@@ -96,7 +106,8 @@ export default {
     },
     created () {
         if(this.value) {
-            this.currentDay = new Date(util.getValidDate(this.value))
+            this.currentDay = new Date(util.getValidDate(this.value,this.format))
+            console.log(this.currentDay)
         } else {
             this.currentDay = new Date()
         }
@@ -135,7 +146,7 @@ export default {
     watch: {
         value (newVal) {
             if(newVal) {
-                this.currentDay = new Date(util.getValidDate(newVal))
+                this.currentDay = new Date(util.getValidDate(newVal,this.format))
             } else {
                 this.currentDay = new Date()
             }
