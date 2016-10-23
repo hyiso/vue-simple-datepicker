@@ -2,6 +2,7 @@
     <div class="datepicker-container" @click.stop="showPanel">
         <div class="datepicker-input">
             <input readonly type="text"
+            :placeholder="placeholder"
             v-model="value"
             @focus="showPanel"
             >
@@ -81,6 +82,7 @@ export default {
             type: String,
             required: false
         },
+        placeholder: String,
         format: {
             type: String,
             required: false,
